@@ -1,6 +1,6 @@
 import React from 'react';
 import { MakeAuthentication } from '../../usecases/AuthenticationFactory';
-import Login from '../../../../presentation/pages/login/Login';
+import Login from '../../../../presentation/pages/login/index';
 import { ValidationComposite } from '../../../../validation/composities';
 import { ValidationBuilder } from '../../../../validation/builders';
 import { MakeCurrentAccountAdapter } from '../../cache/currentAccountAdapterFactory';
