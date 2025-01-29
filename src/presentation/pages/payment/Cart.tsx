@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Card, CardContent, CardActions, Typography, Button, IconButton, TextField } from "@mui/material";
+import { Button, Card, CardActions, CardContent, IconButton, TextField, Typography } from "@mui/material";
 import { Trash2 } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Payment, PaymentModel } from "../../../domain";
 
 interface CartItem {
@@ -14,7 +15,7 @@ interface CartProps {
   paymentOptions: Payment
 }
 
-function ShoppingCart({paymentOptions}: CartProps) {
+function ShoppingCart({ paymentOptions }: CartProps): React.FC {
   const [cartItems, setCartItems] = useState<CartItem[]>([
     { id: 1, name: "Classic Hamburger", price: 8.99, quantity: 2 },
     { id: 2, name: "Cheeseburger", price: 9.99, quantity: 1 },
@@ -22,15 +23,16 @@ function ShoppingCart({paymentOptions}: CartProps) {
   ]);
 
   const [pagamentos, setPagamentos] = useState<PaymentModel[]>();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const getPaymentOptions = async() => {
+    const getPaymentOptions = (async () => {
       const pays = await paymentOptions.pay();
       console.log(pays)
       setPagamentos(pays)
-    }  
+    })
     getPaymentOptions()
-  })
+  }, [])
 
   const removeItem = (id: number) => {
     setCartItems(cartItems.filter((item) => item.id !== id));
@@ -89,13 +91,19 @@ function ShoppingCart({paymentOptions}: CartProps) {
           </Typography>
         )}
       </CardContent>
-      <div style={{display: 'flex', justifyContent: 'space-around', marginBottom: 20}}>
+      <div style={{ display: 'flex', justifyContent: 'space-around', marginBottom: 20 }}>
         {pagamentos?.map((val) => (
-          <Button sx={{ border: 1, marginRight: 5}}>{`${val.text}`}</Button>
+          <Button sx={{ border: 1, marginRight: 5 }}>{`${val.text}`}</Button>
         ))}
       </div>
       <CardActions>
-        <Button variant="contained" color="primary" fullWidth disabled={cartItems.length === 0}>
+        <Button
+          variant="contained"
+          color="primary"
+          fullWidth
+          disabled={cartItems.length === 0}
+          onClick={() => navigate('/checkout')}
+        >
           Prosseguir para o pagamento
         </Button>
       </CardActions>
