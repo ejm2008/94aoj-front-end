@@ -9,7 +9,7 @@ function Botao() {
   const navigate = useNavigate();
 
   const handleInicio = () => {
-    navigate("/");
+    navigate("/cart");
   };
 
   return (

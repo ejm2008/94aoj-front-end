@@ -46,8 +46,8 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
 
   useEffect(() => {
     const getMenu = async () => {
-      // const cat = await categ.category();
-      // setCategories(cat);
+      const cat = await categ.category();
+      setCategories(cat);
       const burg = await hamburg.hamburger();
       setHamburgers(burg);
       const appe = await appet.appetizer();

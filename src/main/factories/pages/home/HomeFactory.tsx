@@ -4,6 +4,7 @@ import { MakeHamburgers } from '../../usecases/HamburgerFactory';
 import { MakeAppetizers } from '../../usecases/AppetizersFactory';
 import { MakeDesserts } from '../../usecases/DessertsFactory';
 import { MakeBeverages } from '../../usecases/BeveragesFactory';
+import { MakeCategories } from '../../usecases/CategoriesFactory';
 
 export default function HomeFactory() {
     return (
@@ -12,8 +13,8 @@ export default function HomeFactory() {
                 hamburg={MakeHamburgers()}
                 appet={MakeAppetizers()}
                 desser={MakeDesserts()}
-                bever={MakeBeverages()}
-            />
+                bever={MakeBeverages()} 
+                categ={MakeCategories()}            />
         </div>
     )
 }
