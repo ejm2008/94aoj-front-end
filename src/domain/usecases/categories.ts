@@ -5,5 +5,5 @@ export namespace Categories {
 }
 
 export interface Categories {
-    category(): Promise<Categories.Model>
+    category(): Promise<Categories.Model[]>
 }
