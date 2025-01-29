@@ -5,5 +5,5 @@ export namespace Desserts {
 }
 
 export interface Desserts {
-    dessert(): Promise<Desserts.Model>
+    dessert(): Promise<Desserts.Model[]>
 }

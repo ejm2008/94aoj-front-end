@@ -5,5 +5,5 @@ export namespace Hamburgers {
 }
 
 export interface Hamburgers {
-    hamburger(): Promise<Hamburgers.Model>
+    hamburger(): Promise<Hamburgers.Model[]>
 }

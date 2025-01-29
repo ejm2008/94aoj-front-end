@@ -1,32 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography, Button, Grid } from "@mui/material";
 import useStyles from "./styles";
-import axios from "axios";
+import { Appetizers, Beverages, Desserts, Hamburgers } from "../../../domain/usecases";
+import { AppetizersModel, BeveragesModel, DessertsModel, HamburgersModel } from "../../../domain";
 
-function Home() {
+interface HomeProps {
+  hamburg: Hamburgers;
+  appet: Appetizers;
+  desser: Desserts;
+  bever: Beverages;
+
+}
+
+function Home({ hamburg, appet, desser, bever }: HomeProps) {
   const styles = useStyles();
-  interface MenuItem {
-    id: number;
-    title: string;
-    description?: string;
-    image?: string;
-    values?: {
-      small?: number;
-      large?: number;
-    };
-    value?: number;
-  }
 
-  const [hamburgers, setHamburgers] = useState<MenuItem[]>([]);
-  const [appetizers, setAppetizers] = useState<MenuItem[]>([]);
-  const [desserts, setDesserts] = useState<MenuItem[]>([]);
-  const [beverages, setBeverages] = useState<MenuItem[]>([]);
+  const [hamburgers, setHamburgers] = useState<HamburgersModel[]>([]);
+  const [appetizers, setAppetizers] = useState<AppetizersModel[]>([]);
+  const [desserts, setDesserts] = useState<DessertsModel[]>([]);
+  const [beverages, setBeverages] = useState<BeveragesModel[]>([]);
 
   useEffect(() => {
-    axios.get("https://burgerlivery-api.vercel.app/hamburgers").then((response) => setHamburgers(response.data));
-    axios.get("https://burgerlivery-api.vercel.app/appetizers").then((response) => setAppetizers(response.data));
-    axios.get("https://burgerlivery-api.vercel.app/desserts").then((response) => setDesserts(response.data));
-    axios.get("https://burgerlivery-api.vercel.app/beverages").then((response) => setBeverages(response.data));
+    const getMenu = async() => {
+      const burg = await hamburg.hamburger();
+      setHamburgers(burg)
+      const appe = await appet.appetizer();
+      setAppetizers(appe)
+      const dess = await desser.dessert();
+      setDesserts(dess)
+      const bev = await bever.beverage();
+      setBeverages(bev)
+    }
+    getMenu()
   }, []);
 
   const scrollToSection = (id: string) => {
@@ -74,7 +79,7 @@ function Home() {
                 )}
                 <Typography variant="h6">{item.title}</Typography>
                 {item.description && <Typography>{item.description}</Typography>}
-                <Typography>R$ {item.values?.small ?? item.value ?? 0}</Typography>
+                <Typography>R$ {item.values?.single ?? item.value ?? 0}</Typography>
               </Box>
             </Grid>
           ))}
