@@ -1,4 +1,5 @@
 export type HamburgersModel = {
+    value: number;
     id: number;
     image: Array<string>;
     title: string;
