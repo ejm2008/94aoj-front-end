@@ -6,11 +6,10 @@ import Button from "@mui/material/Button";
 import imagem from "../../../assets/imagem-login.png";
 import useStyles from "./styles";
 import { useNavigate } from "react-router-dom";
+import { Authentication } from "../../../../domain/usecases";
 
 interface LoginProps {
-  authentication: {
-    auth: (params: { login: string; password: string }) => Promise<any>;
-  };
+  authentication: Authentication;
   currentAccount: {
     set: (account: any) => void;
   };

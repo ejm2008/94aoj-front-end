@@ -5,5 +5,5 @@ export namespace Appetizers {
 }
 
 export interface Appetizers {
-    appetizer(): Promise<Appetizers.Model>
+    appetizer(): Promise<Appetizers.Model[]>
 }

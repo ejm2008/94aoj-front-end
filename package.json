@@ -14,9 +14,11 @@
     "@mui/material": "^6.4.1",
     "@mui/styles": "^6.4.1",
     "axios": "^1.7.9",
+    "clean-arch": "file:",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.0",
+    "swiper": "^11.2.1",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },
