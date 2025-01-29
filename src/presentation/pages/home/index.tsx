@@ -1,9 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, Collapse, List, ListItem, IconButton } from "@mui/material";
 import useStyles from "./styles";
-import { Appetizers, Beverages, Categories, Desserts, Hamburgers } from "../../../domain/usecases";
-import { AppetizersModel, BeveragesModel, CategoriesModel, DessertsModel, HamburgersModel } from "../../../domain";
+import {
+  Appetizers,
+  Beverages,
+  Categories,
+  Desserts,
+  Hamburgers,
+} from "../../../domain/usecases";
+import {
+  AppetizersModel,
+  BeveragesModel,
+  CategoriesModel,
+  DessertsModel,
+  HamburgersModel,
+} from "../../../domain";
 import imagem from "../../assets/imagem-login.png";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"; // Ícone do carrinho
+import { useNavigate } from "react-router-dom"; // Para navegação
 // Importações do Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
@@ -21,12 +35,14 @@ interface HomeProps {
 
 function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
   const styles = useStyles();
+  const navigate = useNavigate(); // Hook para navegação
 
   const [hamburgers, setHamburgers] = useState<HamburgersModel[]>([]);
   const [appetizers, setAppetizers] = useState<AppetizersModel[]>([]);
   const [desserts, setDesserts] = useState<DessertsModel[]>([]);
   const [beverages, setBeverages] = useState<BeveragesModel[]>([]);
   const [categories, setCategories] = useState<CategoriesModel[]>([]);
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false); // Estado para controlar a visibilidade das categorias
 
   useEffect(() => {
     const getMenu = async () => {
@@ -49,24 +65,42 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
     }
+    setIsCategoriesOpen(false);
+  };
+
+  const toggleCategories = () => {
+    setIsCategoriesOpen(!isCategoriesOpen); // Alterna a visibilidade da lista de categorias
+  };
+
+  const handleCartClick = () => {
+    navigate("/cart"); // Navega para a página do carrinho
   };
 
   return (
     <Box sx={styles.homeContainer}>
-      {/* Header com categorias */}
+      {/* Header com botão para abrir/fechar categorias e ícone do carrinho */}
       <Box sx={styles.header}>
-        <Button sx={styles.headerButton} onClick={() => scrollToSection("hamburgers")}>
-          Hambúrgueres
-        </Button>
-        <Button sx={styles.headerButton} onClick={() => scrollToSection("appetizers")}>
-          Entradas
-        </Button>
-        <Button sx={styles.headerButton} onClick={() => scrollToSection("desserts")}>
-          Sobremesas
-        </Button>
-        <Button sx={styles.headerButton} onClick={() => scrollToSection("beverages")}>
-          Bebidas
-        </Button>
+        <Box sx={styles.headerLeft}>
+          <Button sx={styles.headerButton} onClick={toggleCategories}>
+            Categorias
+          </Button>
+          <Collapse in={isCategoriesOpen}>
+            <List sx={styles.categoryList}>
+              {categories.map((category) => (
+                <ListItem
+                  key={category.id}
+                  sx={styles.categoryItem}
+                  onClick={() => scrollToSection(category.id)}
+                >
+                  {category.text}
+                </ListItem>
+              ))}
+            </List>
+          </Collapse>
+        </Box>
+        <IconButton sx={styles.cartIcon} onClick={handleCartClick}>
+          <ShoppingCartIcon />
+        </IconButton>
       </Box>
 
       {/* Hero Section */}
@@ -74,13 +108,14 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
         <Typography variant="h2" sx={styles.title}>
           Bem-vindo à FIAP Hamburgueria
         </Typography>
-        <Box component="img" src={imagem} sx={styles.imagem} />
+        <Box component="img" src={imagem} />
         <Typography variant="body1" sx={styles.subtitle}>
           Os melhores hambúrgueres feitos com paixão e ingredientes frescos.
         </Typography>
       </Box>
 
       {/* Menu Sections */}
+      {/* Hambúrgueres */}
       <Box id="hamburgers" sx={styles.menuSection}>
         <Typography variant="h4" sx={styles.menuTitle}>
           Hambúrgueres
@@ -103,22 +138,38 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                   <img
                     src={Array.isArray(item.image) ? item.image[0] : item.image}
                     alt={item.title}
-                    style={styles.menuImage}
+                    style={{
+                      ...styles.menuImage,
+                      width: "100%",
+                      height: "200px",
+                      objectFit: "cover",
+                    }}
                   />
                 )}
                 <Typography variant="h6" sx={styles.itemTitle}>
                   {item.title}
                 </Typography>
                 {item.description && (
-                  <Typography sx={styles.itemDescription}>{item.description}</Typography>
+                  <Typography sx={styles.itemDescription}>
+                    {item.description}
+                  </Typography>
                 )}
-                <Typography sx={styles.itemPrice}>R$ {item.values?.single ?? item.value ?? 0}</Typography>
+                <Typography sx={styles.itemPrice}>
+                  R${" "}
+                  {typeof item.values === "object"
+                    ? item.values.single ?? 0
+                    : item.values ?? 0}
+                </Typography>
+                <Button sx={styles.addToCartButton} variant="contained">
+                  Adicionar ao Carrinho
+                </Button>
               </Box>
             </SwiperSlide>
           ))}
         </Swiper>
       </Box>
 
+      {/* Entradas */}
       <Box id="appetizers" sx={styles.menuSection}>
         <Typography variant="h4" sx={styles.menuTitle}>
           Entradas
@@ -141,22 +192,38 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                   <img
                     src={Array.isArray(item.image) ? item.image[0] : item.image}
                     alt={item.title}
-                    style={styles.menuImage}
+                    style={{
+                      ...styles.menuImage,
+                      width: "100%",
+                      height: "200px",
+                      objectFit: "cover",
+                    }}
                   />
                 )}
                 <Typography variant="h6" sx={styles.itemTitle}>
                   {item.title}
                 </Typography>
                 {item.description && (
-                  <Typography sx={styles.itemDescription}>{item.description}</Typography>
+                  <Typography sx={styles.itemDescription}>
+                    {item.description}
+                  </Typography>
                 )}
-                <Typography sx={styles.itemPrice}>R$ {item.values?.small ?? item.values?.large ?? 0}</Typography>
+                <Typography sx={styles.itemPrice}>
+                  R${" "}
+                  {typeof item.values === "object"
+                    ? item.values.small ?? item.values.large ?? 0
+                    : item.values ?? 0}
+                </Typography>
+                <Button sx={styles.addToCartButton} variant="contained">
+                  Adicionar ao Carrinho
+                </Button>
               </Box>
             </SwiperSlide>
           ))}
         </Swiper>
       </Box>
 
+      {/* Sobremesas */}
       <Box id="desserts" sx={styles.menuSection}>
         <Typography variant="h4" sx={styles.menuTitle}>
           Sobremesas
@@ -179,22 +246,38 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                   <img
                     src={Array.isArray(item.image) ? item.image[0] : item.image}
                     alt={item.title}
-                    style={styles.menuImage}
+                    style={{
+                      ...styles.menuImage,
+                      width: "100%",
+                      height: "200px",
+                      objectFit: "cover",
+                    }}
                   />
                 )}
                 <Typography variant="h6" sx={styles.itemTitle}>
                   {item.title}
                 </Typography>
                 {item.description && (
-                  <Typography sx={styles.itemDescription}>{item.description}</Typography>
+                  <Typography sx={styles.itemDescription}>
+                    {item.description}
+                  </Typography>
                 )}
-                <Typography sx={styles.itemPrice}>R$ {item.value ?? 0}</Typography>
+                <Typography sx={styles.itemPrice}>
+                  R${" "}
+                  {typeof item.values === "object"
+                    ? item.values.small ?? item.values.large ?? 0
+                    : item.values ?? 0}
+                </Typography>
+                <Button sx={styles.addToCartButton} variant="contained">
+                  Adicionar ao Carrinho
+                </Button>
               </Box>
             </SwiperSlide>
           ))}
         </Swiper>
       </Box>
 
+      {/* Bebidas */}
       <Box id="beverages" sx={styles.menuSection}>
         <Typography variant="h4" sx={styles.menuTitle}>
           Bebidas
@@ -217,16 +300,31 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                   <img
                     src={Array.isArray(item.image) ? item.image[0] : item.image}
                     alt={item.title}
-                    style={styles.menuImage}
+                    style={{
+                      ...styles.menuImage,
+                      width: "100%",
+                      height: "200px",
+                      objectFit: "cover",
+                    }}
                   />
                 )}
                 <Typography variant="h6" sx={styles.itemTitle}>
                   {item.title}
                 </Typography>
                 {item.description && (
-                  <Typography sx={styles.itemDescription}>{item.description}</Typography>
+                  <Typography sx={styles.itemDescription}>
+                    {item.description}
+                  </Typography>
                 )}
-                <Typography sx={styles.itemPrice}>R$ {item.value ?? 0}</Typography>
+                <Typography sx={styles.itemPrice}>
+                  R${" "}
+                  {typeof item.values === "object"
+                    ? item.values.small ?? item.values.large ?? 0
+                    : item.values ?? 0}
+                </Typography>
+                <Button sx={styles.addToCartButton} variant="contained">
+                  Adicionar ao Carrinho
+                </Button>
               </Box>
             </SwiperSlide>
           ))}

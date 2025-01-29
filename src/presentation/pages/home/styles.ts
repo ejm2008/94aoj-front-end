@@ -8,9 +8,15 @@ const useStyles = () => ({
     color: '#fff',
     padding: '16px 32px',
     display: 'flex',
-    justifyContent: 'center',
-    gap: '24px',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+  },
+  headerLeft: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    gap: '8px',
   },
   headerButton: {
     color: '#fff',
@@ -19,6 +25,31 @@ const useStyles = () => ({
     fontSize: '16px',
     '&:hover': {
       backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    },
+  },
+  categoryList: {
+    backgroundColor: '#547AA5',
+    borderRadius: '4px',
+    padding: '8px 0',
+  },
+  categoryItem: {
+    color: '#fff',
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    },
+  },
+  cartIcon: {
+    color: '#fff',
+    '&:hover': {
+      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    },
+  },
+  addToCartButton: {
+    marginTop: '16px',
+    backgroundColor: '#547AA5',
+    '&:hover': {
+      backgroundColor: '#3a5a7a',
     },
   },
   heroSection: {
