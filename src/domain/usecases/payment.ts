@@ -5,5 +5,5 @@ export namespace Payment {
 }
 
 export interface Payment {
-    pay(): Promise<Payment.Model>
+    pay(): Promise<Payment.Model[]>
 }
