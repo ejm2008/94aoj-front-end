@@ -37,7 +37,7 @@ function Home() {
   };
 
   return (
-    <Box sx={styles.homeContainer}>
+    <Box sx={styles.homeContainer}> {/* Apply styles to the main container */}
       {/* Header com categorias */}
       <Box sx={styles.header}>
         <Button onClick={() => scrollToSection("hamburgers")}>Hambúrgueres</Button>
@@ -58,30 +58,45 @@ function Home() {
 
       {/* Menu Sections */}
       <Box sx={styles.menuSection}>
-        <Typography variant="h4" sx={styles.menuTitle}>Hambúrgueres</Typography>
-        <Grid container spacing={2}>
+        <Typography variant="h4" sx={styles.menuTitle}>
+          Hambúrgueres
+        </Typography>
+        <Grid container spacing={2}> {/* Use Grid for responsive layout */}
           {hamburgers.map((item) => (
             <Grid item key={item.id} xs={12} sm={6} md={4}>
-              <Box sx={styles.menuItem}>
-                {item.image && <img src={Array.isArray(item.image) ? item.image[0] : item.image} alt={item.title} style={{ width: "30%" }} />}
+              <Box sx={styles.menuItem}> {/* Apply styles to each menu item */}
+                {item.image && (
+                  <img
+                    src={Array.isArray(item.image) ? item.image[0] : item.image}
+                    alt={item.title}
+                    style={{ width: "30%" }}
+                  />
+                )}
                 <Typography variant="h6">{item.title}</Typography>
                 {item.description && <Typography>{item.description}</Typography>}
                 <Typography>R$ {item.values?.small ?? item.value ?? 0}</Typography>
               </Box>
             </Grid>
           ))}
-
         </Grid>
       </Box>
 
 
       <Box id="appetizers" sx={styles.menuSection}>
-        <Typography variant="h4" sx={styles.menuTitle}>Entradas</Typography>
-        <Grid container spacing={2}>
+        <Typography variant="h4" sx={styles.menuTitle}>
+          Entradas
+        </Typography>
+        <Grid container spacing={2}> {/* Use Grid for responsive layout */}
           {appetizers.map((item) => (
             <Grid item key={item.id} xs={12} sm={6} md={4}>
-              <Box sx={styles.menuItem}>
-                {item.image && <img src={Array.isArray(item.image) ? item.image[0] : item.image} alt={item.title} style={{ width: "30%" }} />}
+              <Box sx={styles.menuItem}> {/* Apply styles to each menu item */}
+                {item.image && (
+                  <img
+                    src={Array.isArray(item.image) ? item.image[0] : item.image}
+                    alt={item.title}
+                    style={{ width: "30%" }}
+                  />
+                )}
                 <Typography variant="h6">{item.title}</Typography>
                 {item.description && <Typography>{item.description}</Typography>}
                 <Typography>R$ {item.values?.small ?? item.values?.large ?? 0}</Typography>
@@ -92,12 +107,20 @@ function Home() {
       </Box>
 
       <Box id="desserts" sx={styles.menuSection}>
-        <Typography variant="h4" sx={styles.menuTitle}>Sobremesas</Typography>
-        <Grid container spacing={2}>
+        <Typography variant="h4" sx={styles.menuTitle}>
+          Sobremesas
+        </Typography>
+        <Grid container spacing={2}> {/* Use Grid for responsive layout */}
           {desserts.map((item) => (
             <Grid item key={item.id} xs={12} sm={6} md={4}>
-              <Box sx={styles.menuItem}>
-                {item.image && <img src={Array.isArray(item.image) ? item.image[0] : item.image} alt={item.title} style={{ width: "30%" }} />}
+              <Box sx={styles.menuItem}> {/* Apply styles to each menu item */}
+                {item.image && (
+                  <img
+                    src={Array.isArray(item.image) ? item.image[0] : item.image}
+                    alt={item.title}
+                    style={{ width: "30%" }}
+                  />
+                )}
                 <Typography variant="h6">{item.title}</Typography>
                 {item.description && <Typography>{item.description}</Typography>}
                 <Typography>R$ {item.value ?? 0}</Typography>
@@ -108,12 +131,20 @@ function Home() {
       </Box>
 
       <Box id="beverages" sx={styles.menuSection}>
-        <Typography variant="h4" sx={styles.menuTitle}>Bebidas</Typography>
-        <Grid container spacing={2}>
+        <Typography variant="h4" sx={styles.menuTitle}>
+          Bebidas
+        </Typography>
+        <Grid container spacing={2}> {/* Use Grid for responsive layout */}
           {beverages.map((item) => (
             <Grid item key={item.id} xs={12} sm={6} md={4}>
-              <Box sx={styles.menuItem}>
-                {item.image && <img src={Array.isArray(item.image) ? item.image[0] : item.image} alt={item.title} style={{ width: "30%" }} />}
+              <Box sx={styles.menuItem}> {/* Apply styles to each menu item */}
+                {item.image && (
+                  <img
+                    src={Array.isArray(item.image) ? item.image[0] : item.image}
+                    alt={item.title}
+                    style={{ width: "30%" }}
+                  />
+                )}
                 <Typography variant="h6">{item.title}</Typography>
                 {item.description && <Typography>{item.description}</Typography>}
                 <Typography>R$ {item.value ?? 0}</Typography>
