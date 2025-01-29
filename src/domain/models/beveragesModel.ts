@@ -4,5 +4,8 @@ export type BeveragesModel = {
     image: string;
     title: string;
     description: string
-    values: number;
+    values: {
+      small: number | null,
+      large: number | null,
+  };
 };
