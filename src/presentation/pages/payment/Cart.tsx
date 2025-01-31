@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardActions, Typography, Button, IconButton, TextField } from "@mui/material";
 import { Trash2 } from "lucide-react";
 import { Payment, PaymentModel } from "../../../domain";
+import imagem from "../../assets/logo-site.png";
 
 interface CartItem {
   id: number;
@@ -50,6 +51,7 @@ function ShoppingCart({paymentOptions}: CartProps) {
 
   return (
     <Card sx={{ maxWidth: 500, margin: "auto", mt: 5, p: 2 }}>
+      <img src={imagem} alt="Cart Image" style={{ width: "100%", height: "auto" }} />
       <CardContent>
         <Typography variant="h5" gutterBottom>
           Carrinho
