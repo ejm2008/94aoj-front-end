@@ -6,7 +6,7 @@ import { MakeApiUrl } from "../http";
 
 export const MakeOrders = (): Orders => {
   return new PostOrders(
-    MakeApiUrl(apiRoutes.orders),
+    MakeApiUrl(apiRoutes.createOrder),
     MakeAuthHttpClientDecorator<Orders.Params, Orders.Model>()
   );
 };

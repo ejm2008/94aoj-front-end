@@ -43,7 +43,7 @@ function Body({ authentication, currentAccount, validation }: LoginProps) {
       const response = await authentication.auth(params);
       currentAccount.set(response);
       alert("Login realizado com sucesso!");
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       alert("Erro ao realizar o Login");
       console.error(error);
