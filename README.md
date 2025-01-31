@@ -4,9 +4,9 @@ Baseado na abordagen do livro Clean Architecture, visando criar um arquitetura p
 
 ## Integrantes do grupo
 
-RM354222 - Leonardo Salomão
-RM353161 - Eric Junji Minei
-RM354723 - Alex Wojtowicz
+RM354222 - Leonardo Salomão    
+RM353161 - Eric Junji Minei     
+RM354723 - Alex Wojtowicz       
 RM353847 - Willian Carvalho
 
 
