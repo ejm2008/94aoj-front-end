@@ -9,8 +9,8 @@ const AppRouter = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" Component={HomeFactory} />
-        <Route path="/login" Component={LoginFactory} />
+        <Route path="/home" Component={HomeFactory} />
+        <Route path="/" Component={LoginFactory} />
         <Route path='/cart' Component={CartFactory}/>
         <Route path='/checkout' Component={CheckoutFactory}/>
       </Routes>
