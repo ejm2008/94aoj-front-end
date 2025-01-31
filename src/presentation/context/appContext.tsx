@@ -1,8 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
-import { OrderContext, OrdersParams } from "../../domain";
+import { OrderContext } from "../../domain";
 
 interface AppContextValues {
-    cart: OrdersParams;
     items: OrderContext[];
     AddOrder: (v: OrderContext) => void;
     RemoveOrder: (v: OrderContext) => void;
@@ -14,7 +13,6 @@ interface AppContextValues {
 const AppContext = createContext<AppContextValues>({} as AppContextValues)
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
-    const [cart, setCart] = useState<OrdersParams>({} as OrdersParams)
     const [items, setItems] = useState<OrderContext[]>([])
     const [modo, setModo] = useState<string>('')
 
@@ -29,7 +27,6 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     return (
         <AppContext.Provider
             value={{
-                cart, 
                 items, 
                 modo, 
                 setModo,
