@@ -170,7 +170,6 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                       title: item.title,
                       value: item.values.combo
                     }
-                    //const valor = 
                     AddOrder(id)
                   }}
                   >
@@ -185,7 +184,6 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                       title: item.title,
                       value: item.values.combo
                     }
-                    //const valor = 
                     RemoveOrder(id)}
                   }
                   >
@@ -250,7 +248,6 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                       title: item.title,
                       value: item.values.small!
                     }
-                    //const valor = 
                     AddOrder(id)}
                   }>
                   Adicionar ao Carrinho
@@ -264,7 +261,6 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                       title: item.title,
                       value: item.values.small!
                     }
-                    //const valor = 
                     RemoveOrder(id)}
                   }
                   >
@@ -317,9 +313,7 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                 )}
                 <Typography sx={styles.itemPrice}>
                   R${" "}
-                  {typeof item.values === "object"
-                    ? item.values.small ?? item.values.large ?? 0
-                    : item.values ?? 0}
+                  {item.value}
                 </Typography>
                 <Button 
                   sx={styles.addToCartButton} 
@@ -327,9 +321,8 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                   onClick={() => {
                     const id = {
                       title: item.title,
-                      value: item.values.small!
+                      value: item.value,
                     }
-                    //const valor = 
                     AddOrder(id)}
                   }>
                   Adicionar ao Carrinho
@@ -341,9 +334,8 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                   onClick={() => {
                     const id = {
                       title: item.title,
-                      value: item.values.small!
+                      value: item.value,
                     }
-                    //const valor = 
                     RemoveOrder(id)}
                   }
                   >
@@ -396,9 +388,7 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                 )}
                 <Typography sx={styles.itemPrice}>
                   R${" "}
-                  {typeof item.values === "object"
-                    ? item.values.small ?? item.values.large ?? 0
-                    : item.values ?? 0}
+                  {item.value}
                 </Typography>
                 <Button 
                   sx={styles.addToCartButton} 
@@ -406,9 +396,8 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                   onClick={() => {
                     const id = {
                       title: item.title,
-                      value: item.values.small!
+                      value: item.value,
                     }
-                    //const valor = 
                     AddOrder(id)}
                   }>
                   Adicionar ao Carrinho
@@ -420,9 +409,8 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                   onClick={() => {
                     const id = {
                       title: item.title,
-                      value: item.values.small!
+                      value: item.value,
                     }
-                    //const valor = 
                     RemoveOrder(id)}
                   }
                   >
@@ -432,6 +420,25 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
             </SwiperSlide>
           ))}
         </Swiper>
+      </Box>
+
+      {/* Botão para o Carrinho no Final da Tela */}
+      <Box sx={{ textAlign: "center", margin: "40px 0" }}>
+        <Button
+          variant="contained"
+          sx={{
+            backgroundColor: "#ff5722",
+            color: "#fff",
+            padding: "10px 30px",
+            fontSize: "1.2rem",
+            "&:hover": {
+              backgroundColor: "#e64a19",
+            },
+          }}
+          onClick={handleCartClick}
+        >
+          Ver Carrinho
+        </Button>
       </Box>
 
       {/* Footer Section */}
