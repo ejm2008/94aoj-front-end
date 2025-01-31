@@ -8,7 +8,6 @@ RM354222 - Leonardo Salomão
 RM353161 - Eric Junji Minei
 RM354723 - Alex Wojtowicz
 RM353847 - Willian Carvalho
-RM355131 - Cesar Picerni
 
 
 ## Configuração, Instalação e Servindo o projeto localmente
