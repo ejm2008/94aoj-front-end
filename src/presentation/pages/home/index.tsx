@@ -24,6 +24,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useApp } from "../../context/appContext";
 
 interface HomeProps {
   categ: Categories;
@@ -35,6 +36,7 @@ interface HomeProps {
 
 function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
   const styles = useStyles();
+  const { RemoveOrder, AddOrder, items } = useApp();
   const navigate = useNavigate(); // Hook para navegação
 
   const [hamburgers, setHamburgers] = useState<HamburgersModel[]>([]);
@@ -160,8 +162,34 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                     ? item.values.single ?? 0
                     : item.values ?? 0}
                 </Typography>
-                <Button sx={styles.addToCartButton} variant="contained">
+                <Button 
+                  sx={styles.addToCartButton} 
+                  variant="contained"
+                  onClick={() => {
+                    const id = {
+                      title: item.title,
+                      value: item.values.combo
+                    }
+                    //const valor = 
+                    AddOrder(id)
+                  }}
+                  >
                   Adicionar ao Carrinho
+                </Button>
+                <Button 
+                  sx={styles.addToCartButton} 
+                  variant="contained"
+                  disabled={items.filter(v => v.title === item.title).length <= 0}
+                  onClick={() => {
+                    const id = {
+                      title: item.title,
+                      value: item.values.combo
+                    }
+                    //const valor = 
+                    RemoveOrder(id)}
+                  }
+                  >
+                  Remover do Carrinho
                 </Button>
               </Box>
             </SwiperSlide>
@@ -214,8 +242,33 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                     ? item.values.small ?? item.values.large ?? 0
                     : item.values ?? 0}
                 </Typography>
-                <Button sx={styles.addToCartButton} variant="contained">
+                <Button 
+                  sx={styles.addToCartButton} 
+                  variant="contained"
+                  onClick={() => {
+                    const id = {
+                      title: item.title,
+                      value: item.values.small!
+                    }
+                    //const valor = 
+                    AddOrder(id)}
+                  }>
                   Adicionar ao Carrinho
+                </Button>
+                <Button 
+                  sx={styles.addToCartButton} 
+                  variant="contained"
+                  disabled={items.filter(v => v.title === item.title).length <= 0}
+                  onClick={() => {
+                    const id = {
+                      title: item.title,
+                      value: item.values.small!
+                    }
+                    //const valor = 
+                    RemoveOrder(id)}
+                  }
+                  >
+                  Remover do Carrinho
                 </Button>
               </Box>
             </SwiperSlide>
@@ -268,8 +321,33 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                     ? item.values.small ?? item.values.large ?? 0
                     : item.values ?? 0}
                 </Typography>
-                <Button sx={styles.addToCartButton} variant="contained">
+                <Button 
+                  sx={styles.addToCartButton} 
+                  variant="contained"
+                  onClick={() => {
+                    const id = {
+                      title: item.title,
+                      value: item.values.small!
+                    }
+                    //const valor = 
+                    AddOrder(id)}
+                  }>
                   Adicionar ao Carrinho
+                </Button>
+                <Button 
+                  sx={styles.addToCartButton} 
+                  variant="contained"
+                  disabled={items.filter(v => v.title === item.title).length <= 0}
+                  onClick={() => {
+                    const id = {
+                      title: item.title,
+                      value: item.values.small!
+                    }
+                    //const valor = 
+                    RemoveOrder(id)}
+                  }
+                  >
+                  Remover do Carrinho
                 </Button>
               </Box>
             </SwiperSlide>
@@ -322,8 +400,33 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                     ? item.values.small ?? item.values.large ?? 0
                     : item.values ?? 0}
                 </Typography>
-                <Button sx={styles.addToCartButton} variant="contained">
+                <Button 
+                  sx={styles.addToCartButton} 
+                  variant="contained"
+                  onClick={() => {
+                    const id = {
+                      title: item.title,
+                      value: item.values.small!
+                    }
+                    //const valor = 
+                    AddOrder(id)}
+                  }>
                   Adicionar ao Carrinho
+                </Button>
+                <Button 
+                  sx={styles.addToCartButton} 
+                  variant="contained"
+                  disabled={items.filter(v => v.title === item.title).length <= 0}
+                  onClick={() => {
+                    const id = {
+                      title: item.title,
+                      value: item.values.small!
+                    }
+                    //const valor = 
+                    RemoveOrder(id)}
+                  }
+                  >
+                  Remover do Carrinho
                 </Button>
               </Box>
             </SwiperSlide>
