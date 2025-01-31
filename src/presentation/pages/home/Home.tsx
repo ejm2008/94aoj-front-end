@@ -77,6 +77,13 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
     navigate("/cart");
   };
 
+  const categorySectionMap: { [key: string]: string } = {
+    Hamburgers: "hamburgers",
+    Porções: "appetizers",
+    Bebidas: "beverages",
+    Sobremesas: "desserts",
+  };
+
   return (
     <Box sx={styles.homeContainer}>
       <Box sx={styles.header}>
@@ -90,7 +97,7 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                 <ListItem
                   key={category.id}
                   sx={styles.categoryItem}
-                  onClick={() => scrollToSection(category.id)}
+                  onClick={() => scrollToSection(categorySectionMap[category.text] || "")}
                 >
                   {category.text}
                 </ListItem>
@@ -167,7 +174,7 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                     }
                     AddOrder(id)
                   }}
-                  >
+                >
                   Adicionar ao Carrinho
                 </Button>
                 <Button 
@@ -181,7 +188,7 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                     }
                     RemoveOrder(id)}
                   }
-                  >
+                >
                   Remover do Carrinho
                 </Button>
               </Box>
@@ -192,7 +199,7 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
 
       <Box id="appetizers" sx={styles.menuSection}>
         <Typography variant="h4" sx={styles.menuTitle}>
-          Entradas
+          Porções
         </Typography>
         <Swiper
           modules={[Navigation, Pagination]}
@@ -243,7 +250,8 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                       value: item.values.small!
                     }
                     AddOrder(id)}
-                  }>
+                  }
+                >
                   Adicionar ao Carrinho
                 </Button>
                 <Button 
@@ -257,7 +265,7 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                     }
                     RemoveOrder(id)}
                   }
-                  >
+                >
                   Remover do Carrinho
                 </Button>
               </Box>
@@ -317,7 +325,8 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                       value: item.value,
                     }
                     AddOrder(id)}
-                  }>
+                  }
+                >
                   Adicionar ao Carrinho
                 </Button>
                 <Button 
@@ -331,7 +340,7 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                     }
                     RemoveOrder(id)}
                   }
-                  >
+                >
                   Remover do Carrinho
                 </Button>
               </Box>
@@ -391,7 +400,8 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                       value: item.value,
                     }
                     AddOrder(id)}
-                  }>
+                  }
+                >
                   Adicionar ao Carrinho
                 </Button>
                 <Button 
@@ -405,7 +415,7 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
                     }
                     RemoveOrder(id)}
                   }
-                  >
+                >
                   Remover do Carrinho
                 </Button>
               </Box>

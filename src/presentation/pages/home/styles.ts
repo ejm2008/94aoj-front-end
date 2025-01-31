@@ -4,8 +4,8 @@ const useStyles = () => ({
     minHeight: '100vh',
   },
   header: {
-    backgroundColor: '#547AA5',
-    color: '#fff',
+    backgroundColor: '#fff',
+    color: '#547AA5',
     padding: '16px 32px',
     display: 'flex',
     justifyContent: 'space-between',
@@ -19,7 +19,8 @@ const useStyles = () => ({
     gap: '8px',
   },
   headerButton: {
-    color: '#fff',
+    border: '1px solid #547AA5',
+    color: '#547AA5',
     fontWeight: 'bold',
     textTransform: 'none',
     fontSize: '16px',
@@ -40,7 +41,7 @@ const useStyles = () => ({
     },
   },
   cartIcon: {
-    color: '#fff',
+    color: '#547AA5',
     '&:hover': {
       backgroundColor: 'rgba(255, 255, 255, 0.1)',
     },
