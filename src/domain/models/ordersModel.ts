@@ -5,12 +5,12 @@ export type OrdersModel = {
     details: object;
 };
 
+export interface OrderContext {
+    title: string,
+    value: number,
+}
+
 export type OrdersParams = {
-    items: [
-        {
-            title: string,
-            value: number,
-        }
-    ];
+    items: OrderContext[];
     paymentOption: string;
 };

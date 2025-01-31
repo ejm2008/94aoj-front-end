@@ -1,27 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, CardActions, Typography, Button, IconButton, TextField } from "@mui/material";
+import { Card, CardContent, CardActions, Typography, Button, IconButton } from "@mui/material";
 import { Trash2 } from "lucide-react";
-import { Payment, PaymentModel } from "../../../domain";
 import imagem from "../../assets/logo-site.png";
 
-interface CartItem {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
-}
+import { OrderContext, Orders, Payment, PaymentModel } from "../../../domain";
+import { useApp } from "../../context/appContext";
 
 interface CartProps {
-  paymentOptions: Payment
+  paymentOptions: Payment;
+  createOrder: Orders
 }
 
-function ShoppingCart({paymentOptions}: CartProps) {
-  const [cartItems, setCartItems] = useState<CartItem[]>([
-    { id: 1, name: "Classic Hamburger", price: 8.99, quantity: 2 },
-    { id: 2, name: "Cheeseburger", price: 9.99, quantity: 1 },
-    { id: 3, name: "Fries", price: 3.99, quantity: 3 },
-  ]);
+function ShoppingCart({paymentOptions, createOrder}: CartProps) {
 
+  const {items, RemoveOrder, setModo, modo} = useApp()
   const [pagamentos, setPagamentos] = useState<PaymentModel[]>();
 
   useEffect(() => {
@@ -31,22 +23,11 @@ function ShoppingCart({paymentOptions}: CartProps) {
       setPagamentos(pays)
     }  
     getPaymentOptions()
-  })
+  }, [])
 
-  const removeItem = (id: number) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
-  };
-
-  const updateQuantity = (id: number, quantity: number) => {
-    setCartItems(
-      cartItems.map((item) =>
-        item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item
-      )
-    );
-  };
 
   const calculateTotal = () => {
-    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+    return items.reduce((total, item) => total + item.value , 0).toFixed(2);
   };
 
   return (
@@ -57,27 +38,20 @@ function ShoppingCart({paymentOptions}: CartProps) {
           Carrinho
         </Typography>
 
-        {cartItems.length === 0 ? (
+        {items.length === 0 ? (
           <Typography color="textSecondary">Seu carrinho está vazio</Typography>
         ) : (
-          cartItems.map((item) => (
-            <div key={item.id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: "10px", borderBottom: "1px solid #ddd" }}>
+          items.map((item: OrderContext, idx: number) => (
+            <div key={idx} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: "10px", borderBottom: "1px solid #ddd" }}>
               <div>
-                <Typography variant="body1">{item.name}</Typography>
+                <Typography variant="body1">{item.title}</Typography>
                 <Typography variant="body2" color="textSecondary">
-                  R$ {item.price.toFixed(2)}
+                  R$ {item.value.toFixed(2)}
                 </Typography>
               </div>
               <div style={{ display: "flex", alignItems: "center" }}>
-                <TextField
-                  type="number"
-                  size="small"
-                  value={item.quantity}
-                  onChange={(e) => updateQuantity(item.id, Number(e.target.value))}
-                  inputProps={{ min: 1 }}
-                  sx={{ width: 60, marginRight: 1 }}
-                />
-                <IconButton color="error" onClick={() => removeItem(item.id)}>
+                
+                <IconButton color="error" onClick={() => RemoveOrder(item)}>
                   <Trash2 />
                 </IconButton>
               </div>
@@ -85,7 +59,7 @@ function ShoppingCart({paymentOptions}: CartProps) {
           ))
         )}
 
-        {cartItems.length > 0 && (
+        {items.length > 0 && (
           <Typography variant="h6" sx={{ mt: 2, textAlign: "right" }}>
             Total: ${calculateTotal()}
           </Typography>
@@ -93,12 +67,31 @@ function ShoppingCart({paymentOptions}: CartProps) {
       </CardContent>
       <div style={{display: 'flex', justifyContent: 'space-around', marginBottom: 20}}>
         {pagamentos?.map((val) => (
-          <Button sx={{ border: 1, marginRight: 5}}>{`${val.text}`}</Button>
+          <Button 
+            sx={{ border: 1, marginRight: 5}}
+            onClick={() => setModo(val.text)}
+            disabled={val.text === modo}
+          >
+            {`${val.text}`}
+          </Button>
         ))}
       </div>
       <CardActions>
-        <Button variant="contained" color="primary" fullWidth disabled={cartItems.length === 0}>
-          Prosseguir para o pagamento
+        <Button 
+          variant="contained" 
+          color="primary" 
+          fullWidth 
+          disabled={items.length === 0 || modo === ''}
+          onClick={async () => {
+            try {
+              await createOrder.order({items, paymentOption: modo})
+              alert("Pedido realizado!");
+            } catch {
+              alert("Erro no pedido!");
+            }
+          }}
+        >
+          Fazer pedido
         </Button>
       </CardActions>
     </Card>

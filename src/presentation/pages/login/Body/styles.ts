@@ -1,6 +1,6 @@
 const useStyles = () => ({
   centralizar: {
-    marginTop: "2%",
+    marginTop: "12%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -18,8 +18,8 @@ const useStyles = () => ({
     position: "absolute",
     width: "400px",
     height: "400px",
-    marginTop: "40px",
-    marginLeft: "210px",
+    marginTop: "10%",
+    marginLeft: "16%",
   },
   TextField: {
     borderRadius: "5px",
