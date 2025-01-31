@@ -2,13 +2,14 @@
 Projeto Frontend utilizando camadas para separação de responsabilidades visando um crescimento ordenado da aplicação.
 Baseado na abordagen do livro Clean Architecture, visando criar um arquitetura para projetos frontend.
 
-## Diagrama
+## Integrantes do grupo
 
-Acesse o diagrama [Diagrama](./DIAGRAM.md)
+RM354222 - Leonardo Salomão
+RM353161 - Eric Junji Minei
+RM354723 - Alex Wojtowicz
+RM353847 - Willian Carvalho
+RM355131 - Cesar Picerni
 
-## Tecnologias
-
-Projeto utiliza [Vue.js](https://vuejs.org/) + [Typescript](https://www.typescriptlang.org/), projeto iniciado utilizando [Vite](https://vite.dev/)
 
 ## Configuração, Instalação e Servindo o projeto localmente
 
@@ -22,7 +23,7 @@ Eu utilizei o **npm**, e os comandos serão baseados no mesmo.
 No terminal rode os comandos
 
 ```bash 
-git clone https://github.com/94AOJ/clean-acrhitecture.git
+git clone https://github.com/ejm2008/94aoj-front-end.git
 ```
 E acesse o diretório do projeto
 
