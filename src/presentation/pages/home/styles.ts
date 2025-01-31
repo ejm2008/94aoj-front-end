@@ -4,38 +4,13 @@ const useStyles = () => ({
     minHeight: '100vh',
   },
   header: {
-    backgroundColor: '#547AA5',
-    color: '#fff',
-    borderRadius: '0 0 16px 16px',
+    backgroundColor: '#fff',
+    color: '#547AA5',
     padding: '16px 32px',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-  },
-  heroSection: {
-    textAlign: 'center',
-    padding: '80px 24px',
-    backgroundColor: '#fff', // Fundo branco
-  },
-  title: {
-    fontSize: '3rem',
-    fontWeight: 'bold',
-    marginBottom: '16px',
-    color: '#000', // Título preto
-  },
-  subtitle: {
-    fontSize: '1.5rem',
-    color: '#000', // Subtítulo preto
-  },
-  logoImage: {
-    width: '300px', // Tamanho da logo
-    height: '300px',
-    borderRadius: '50%', // Círculo ao redor da logo
-    border: '6px solid #547AA5', // Borda azul
-    padding: '8px', // Espaçamento interno
-    backgroundColor: '#fff', // Fundo branco para o círculo
-    margin: '0 auto 16px', // Centralizar e margem inferior
   },
   headerLeft: {
     display: 'flex',
@@ -44,8 +19,8 @@ const useStyles = () => ({
     gap: '8px',
   },
   headerButton: {
-    border: '1px solid #fff',
-    color: '#fff',
+    border: '1px solid #547AA5',
+    color: '#547AA5',
     fontWeight: 'bold',
     textTransform: 'none',
     fontSize: '16px',
@@ -66,7 +41,7 @@ const useStyles = () => ({
     },
   },
   cartIcon: {
-    color: '#fff',
+    color: '#547AA5',
     '&:hover': {
       backgroundColor: 'rgba(255, 255, 255, 0.1)',
     },
@@ -77,6 +52,21 @@ const useStyles = () => ({
     '&:hover': {
       backgroundColor: '#3a5a7a',
     },
+  },
+  heroSection: {
+    textAlign: 'center',
+    padding: '80px 24px',
+    backgroundColor: '#547AA5',
+    color: '#fff',
+  },
+  title: {
+    fontSize: '3rem',
+    fontWeight: 'bold',
+    marginBottom: '16px',
+  },
+  subtitle: {
+    fontSize: '1.5rem',
+    color: '#e0e0e0',
   },
   menuSection: {
     padding: '64px 24px',

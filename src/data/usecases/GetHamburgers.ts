@@ -17,7 +17,7 @@ import {
         private readonly httpClient: HttpClient<Hamburgers.Model>
     ) {}
 
-    async hamburger(): Promise<Hamburgers.Model[]> {
+    async hamburger(): Promise<Hamburgers.Model> {
       const httpResponse = await this.httpClient.request({
           url: `${this.url}`,
           method: "get",
@@ -25,7 +25,7 @@ import {
 
       switch (httpResponse.statusCode) {
         case HttpStatusCode.Ok:
-          return httpResponse.body as Hamburgers.Model[]
+          return httpResponse.body as Hamburgers.Model
         case HttpStatusCode.Forbidden:
           throw new ForbiddenError()
         case HttpStatusCode.PreconditionFailed:

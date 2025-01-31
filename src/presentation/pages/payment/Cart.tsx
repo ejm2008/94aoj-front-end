@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardActions, Typography, Button, IconButton } from "@mui/material";
 import { Trash2 } from "lucide-react";
-import imagem from "../../assets/logo-site.png";
 
 import { OrderContext, Orders, Payment, PaymentModel } from "../../../domain";
 import { useApp } from "../../context/appContext";
@@ -32,7 +31,6 @@ function ShoppingCart({paymentOptions, createOrder}: CartProps) {
 
   return (
     <Card sx={{ maxWidth: 500, margin: "auto", mt: 5, p: 2 }}>
-      <img src={imagem} alt="Cart Image" style={{ width: "100%", height: "auto" }} />
       <CardContent>
         <Typography variant="h5" gutterBottom>
           Carrinho

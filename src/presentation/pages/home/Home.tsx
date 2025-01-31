@@ -111,18 +111,14 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
       </Box>
 
       <Box sx={styles.heroSection}>
-  <Typography variant="h2" sx={styles.title}>
-    Bem-vindo à FIAP Hamburgueria
-  </Typography>
-  <Box
-    component="img"
-    src={imagem}
-    sx={styles.logoImage}
-  />
-  <Typography variant="body1" sx={styles.subtitle}>
-    Os melhores hambúrgueres feitos com paixão e ingredientes frescos.
-  </Typography>
-</Box>
+        <Typography variant="h2" sx={styles.title}>
+          Bem-vindo à FIAP Hamburgueria
+        </Typography>
+        <Box component="img" src={imagem} />
+        <Typography variant="body1" sx={styles.subtitle}>
+          Os melhores hambúrgueres feitos com paixão e ingredientes frescos.
+        </Typography>
+      </Box>
 
       <Box id="hamburgers" sx={styles.menuSection}>
         <Typography variant="h4" sx={styles.menuTitle}>
