@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Stack } from "@mui/material";
-import Logo from "./Logo/index";
-import Botao from "./Button/index";
+import Logo from "./Logo/Logo";
+import Botao from "./Button/Button";
 
 import useStyles from "./styles";
 

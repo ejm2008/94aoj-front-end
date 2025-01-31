@@ -16,9 +16,8 @@ import {
   HamburgersModel,
 } from "../../../domain";
 import imagem from "../../assets/imagem-login.png";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"; // Ícone do carrinho
-import { useNavigate } from "react-router-dom"; // Para navegação
-// Importações do Swiper
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -37,14 +36,14 @@ interface HomeProps {
 function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
   const styles = useStyles();
   const { RemoveOrder, AddOrder, items } = useApp();
-  const navigate = useNavigate(); // Hook para navegação
+  const navigate = useNavigate();
 
   const [hamburgers, setHamburgers] = useState<HamburgersModel[]>([]);
   const [appetizers, setAppetizers] = useState<AppetizersModel[]>([]);
   const [desserts, setDesserts] = useState<DessertsModel[]>([]);
   const [beverages, setBeverages] = useState<BeveragesModel[]>([]);
   const [categories, setCategories] = useState<CategoriesModel[]>([]);
-  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false); // Estado para controlar a visibilidade das categorias
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
 
   useEffect(() => {
     const getMenu = async () => {
@@ -71,16 +70,15 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
   };
 
   const toggleCategories = () => {
-    setIsCategoriesOpen(!isCategoriesOpen); // Alterna a visibilidade da lista de categorias
+    setIsCategoriesOpen(!isCategoriesOpen);
   };
 
   const handleCartClick = () => {
-    navigate("/cart"); // Navega para a página do carrinho
+    navigate("/cart");
   };
 
   return (
     <Box sx={styles.homeContainer}>
-      {/* Header com botão para abrir/fechar categorias e ícone do carrinho */}
       <Box sx={styles.header}>
         <Box sx={styles.headerLeft}>
           <Button sx={styles.headerButton} onClick={toggleCategories}>
@@ -105,7 +103,6 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
         </IconButton>
       </Box>
 
-      {/* Hero Section */}
       <Box sx={styles.heroSection}>
         <Typography variant="h2" sx={styles.title}>
           Bem-vindo à FIAP Hamburgueria
@@ -116,8 +113,6 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
         </Typography>
       </Box>
 
-      {/* Menu Sections */}
-      {/* Hambúrgueres */}
       <Box id="hamburgers" sx={styles.menuSection}>
         <Typography variant="h4" sx={styles.menuTitle}>
           Hambúrgueres
@@ -195,7 +190,6 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
         </Swiper>
       </Box>
 
-      {/* Entradas */}
       <Box id="appetizers" sx={styles.menuSection}>
         <Typography variant="h4" sx={styles.menuTitle}>
           Entradas
@@ -272,7 +266,6 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
         </Swiper>
       </Box>
 
-      {/* Sobremesas */}
       <Box id="desserts" sx={styles.menuSection}>
         <Typography variant="h4" sx={styles.menuTitle}>
           Sobremesas
@@ -347,7 +340,6 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
         </Swiper>
       </Box>
 
-      {/* Bebidas */}
       <Box id="beverages" sx={styles.menuSection}>
         <Typography variant="h4" sx={styles.menuTitle}>
           Bebidas
@@ -422,7 +414,6 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
         </Swiper>
       </Box>
 
-      {/* Botão para o Carrinho no Final da Tela */}
       <Box sx={{ textAlign: "center", margin: "40px 0" }}>
         <Button
           variant="contained"
@@ -441,7 +432,6 @@ function Home({ categ, hamburg, appet, desser, bever }: HomeProps) {
         </Button>
       </Box>
 
-      {/* Footer Section */}
       <Box sx={styles.footerSection}>
         <Typography variant="body2" sx={styles.footerText}>
           FIAP Hamburgueria © 2025 - Todos os direitos reservados.
